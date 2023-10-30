@@ -4,11 +4,13 @@ import mongoose from "mongoose"
 import dotenv from "dotenv"
 import bodyParser from "body-parser"
 import router from "./router"
+import cors from "cors"
 
 
 dotenv.config()
 const farmer=express()
 farmer.use(bodyParser.json())
+farmer.use(cors())
 farmer.use("/rice",router)
 
 const port=process.env.PORT
