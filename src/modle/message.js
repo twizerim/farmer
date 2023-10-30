@@ -20,7 +20,7 @@ const messageshemas = new mongoose.Schema({
     },
     sendAt:{
         type:Date,
-        default:new Date(Date.now)
+        default:new Date(Date.now())
     }
 
 })
