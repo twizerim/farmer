@@ -57,6 +57,16 @@ class usercontroller{
         }
     }
 
+    static async getone(req,res){
+        const id=req.params.id
+        const user=await User.findById(id)
+        if(!user){
+            return errormessage(res,401,`no user found`)
+        }else{
+            return successmessage(res,201,`user on this id retrived`,user)
+        }
+    }
+
     static async deleteall(req,res){
         const user=await User.deleteMany()
         if(!user){
