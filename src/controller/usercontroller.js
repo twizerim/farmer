@@ -48,6 +48,15 @@ class usercontroller{
         }
     }
 
+    static async getAll(req,res){
+        const user =await User.find()
+        if(!user){
+            return errormessage(res,40,`user not found`)
+        }else{
+            return successmessage(res,201,`All ${user.length} retrived`,user)
+        }
+    }
+
     static async deleteall(req,res){
         const user=await User.deleteMany()
         if(!user){
@@ -58,6 +67,7 @@ class usercontroller{
         }
         
     }
+
 
 }
 export default usercontroller
