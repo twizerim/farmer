@@ -3,7 +3,7 @@ import Member from "../modle/Member"
 import errormessage from "../utills/errormessage"
 import bcrypt from "bcrypt"
 import successmessage from "../utills/successmessage"
-// import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken"
 
 
 class membercontroller{
@@ -21,6 +21,29 @@ class membercontroller{
            return successmessage(res,201,`member successfuly registed`,member) 
         }
        
+    }
+
+    static async enter(req,res){
+        const {email,nationalId,yourpassword}=req.body
+        const member = await Member.findOne({email})
+        if(!member){
+            return errormessage(res,401,`invalid email`)
+        }else if(nationalId!==member.nationalId){
+            return errormessage(res,401,`invali national Id`)
+        }else{
+            const comparepassword=bcrypt.compareSync(yourpassword,member.yourpassword)
+            if(!comparepassword){
+                return errormessage(res,401,`invalid password`)
+            }else{
+                const token=jwt.sign({member:member},process.env.SCRET_KEY,{expiresIn:"1d"})
+                return res.status(201).json({
+                    token:token,
+                    data:{
+                        member:member
+                    }
+                })
+            }
+        }
     }
 }
 export default membercontroller
