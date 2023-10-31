@@ -24,12 +24,10 @@ class membercontroller{
     }
 
     static async enter(req,res){
-        const {email,nationalId,yourpassword}=req.body
+        const {email,yourpassword}=req.body
         const member = await Member.findOne({email})
         if(!member){
             return errormessage(res,401,`invalid email`)
-        }else if(nationalId!==member.nationalId){
-            return errormessage(res,401,`invali national Id`)
         }else{
             const comparepassword=bcrypt.compareSync(yourpassword,member.yourpassword)
             if(!comparepassword){
