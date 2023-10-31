@@ -33,7 +33,7 @@ const memberschemas = new mongoose.Schema({
     },
     role:{
         type:String,
-        enum:["member","memberAdmin","admin"],
+        enum:["member","admin"],
         default:"member"
     },
     registAt:{
