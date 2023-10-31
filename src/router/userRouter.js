@@ -7,5 +7,5 @@ router.post("/",usercontroller.signup)
 router.delete("/",usercontroller.deleteall)
 router.post("/login",usercontroller.Login)
 router.get("/get",Verifyaccess("admin"),usercontroller.getAll)
-router.get("/:id",usercontroller.getone)
+router.get("/:id",Verifyaccess("admin"),usercontroller.getone)
 export default router
