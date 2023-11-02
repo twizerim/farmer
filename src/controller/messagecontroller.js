@@ -13,5 +13,13 @@ class messagecontroller{
             return successmessage(res,201,`mesage sent`,messag)
         }
     }
+     static async getallmessage(req,res){
+        const messag = await Message.find()
+        if(!messag){
+            return errormessage(res,401,`no message found`)
+        }else{
+            return successmessage(res,201,`All ${messag.length} found read it please`,messag)
+        }
+     }
 }
 export default messagecontroller
