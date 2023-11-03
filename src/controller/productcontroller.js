@@ -13,5 +13,14 @@ class productcontroller{
             return successmessage(res,401,`product successfuly posted`,product)
         }
     }
+
+    static async getallproduct(req,res){
+        const product=await Product.find()
+        if(!product){
+            return errormessage(res,401,`product not found`)
+        }else{
+            return successmessage(res,201,`all ${product.length} retrived`,product)
+        }
+    }
 }
 export default productcontroller
