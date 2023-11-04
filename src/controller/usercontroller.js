@@ -85,7 +85,7 @@ class usercontroller{
             return errormessage(res,401,`no user found`)
         }
         else{
-            return successmessage(res,201,`user succefuly updated`)
+            return successmessage(res,201,`user succefuly updated`,user)
         }
     }
 
