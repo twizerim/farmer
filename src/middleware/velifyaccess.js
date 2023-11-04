@@ -18,7 +18,7 @@ const Verifyaccess=(passRole)=>{
                 }
             } catch (error) {
                 if ((error.name = "JsonWebTokenError"))
-                return errorRisponse(res, 401, "Invalid Token or Expired Token");
+                return errormessage(res, 401, "Invalid Token or Expired Token");
             }
         }
     }
