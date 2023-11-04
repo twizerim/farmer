@@ -8,4 +8,5 @@ router.delete("/",usercontroller.deleteall)
 router.post("/login",usercontroller.Login)
 router.get("/get",Verifyaccess("admin"),usercontroller.getAll)
 router.get("/:id",Verifyaccess("admin"),usercontroller.getone)
+router.patch("/update",usercontroller.updateuser)
 export default router
